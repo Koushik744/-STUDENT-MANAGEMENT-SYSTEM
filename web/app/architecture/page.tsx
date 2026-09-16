@@ -13,7 +13,7 @@ export default function ArchitecturePage() {
     <div className="min-h-screen">
       {/* Header */}
       <div className="border-b border-white/[0.06] bg-zinc-900/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+        <div className="page-container py-8">
           <span className="badge badge-amber mb-3">ER DIAGRAM</span>
           <h1 className="text-3xl sm:text-4xl font-bold text-zinc-100 mb-3">Database Architecture</h1>
           <p className="text-zinc-400 max-w-2xl">
@@ -22,7 +22,7 @@ export default function ArchitecturePage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+      <div className="page-container py-10">
 
         {/* ── Visual ER Diagram ────────────────────────────────────────── */}
         <div className="glass-raised rounded-xl border border-white/[0.07] p-6 mb-10">

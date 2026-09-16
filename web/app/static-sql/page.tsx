@@ -145,7 +145,7 @@ export default function StaticSqlPage() {
     <div className="min-h-screen">
       {/* Header */}
       <div className="border-b border-white/[0.06] bg-zinc-900/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+        <div className="page-container py-8">
           <div className="flex items-center gap-3 mb-3">
             <span className="badge badge-blue">MODULE 1</span>
             <span className="badge badge-green">
@@ -181,7 +181,7 @@ export default function StaticSqlPage() {
       </div>
 
       {/* Query list */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+      <div className="page-container py-10">
         <div className="flex flex-col gap-8">
           {staticQueries.map((q) => (
             <div key={q.id} className="glass-raised rounded-xl border border-white/[0.07] overflow-hidden">

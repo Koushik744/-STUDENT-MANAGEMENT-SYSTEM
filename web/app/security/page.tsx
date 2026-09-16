@@ -48,7 +48,7 @@ export default function SecurityPage() {
   return (
     <div className="min-h-screen">
       <div className="border-b border-white/[0.06] bg-zinc-900/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+        <div className="page-container py-8">
           <span className="badge badge-red mb-3">
             <Shield size={10} />
             SECURITY ANALYSIS
@@ -60,7 +60,7 @@ export default function SecurityPage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 space-y-12">
+      <div className="page-container py-10 space-y-12">
 
         {/* ── Parameterized flow ───────────────────────────────────────── */}
         <section>
@@ -211,13 +211,14 @@ export default function SecurityPage() {
         <section>
           <h2 className="text-xl font-bold text-zinc-100 mb-6">Defense Summary</h2>
           <div className="glass-raised rounded-xl border border-white/[0.07] overflow-hidden">
-            <table className="w-full text-sm">
+            <div className="overflow-x-auto">
+            <table className="w-full text-sm min-w-[600px]">
               <thead>
                 <tr className="border-b border-white/[0.06]">
-                  <th className="text-left px-5 py-3 text-xs font-semibold text-zinc-600 uppercase tracking-wider">Input Type</th>
-                  <th className="text-left px-5 py-3 text-xs font-semibold text-zinc-600 uppercase tracking-wider">Defense</th>
-                  <th className="text-left px-5 py-3 text-xs font-semibold text-zinc-600 uppercase tracking-wider">Example</th>
-                  <th className="text-left px-5 py-3 text-xs font-semibold text-zinc-600 uppercase tracking-wider">Status</th>
+                  <th className="text-left px-5 py-3 text-xs font-semibold text-zinc-600 uppercase tracking-wider whitespace-nowrap">Input Type</th>
+                  <th className="text-left px-5 py-3 text-xs font-semibold text-zinc-600 uppercase tracking-wider whitespace-nowrap">Defense</th>
+                  <th className="text-left px-5 py-3 text-xs font-semibold text-zinc-600 uppercase tracking-wider whitespace-nowrap">Example</th>
+                  <th className="text-left px-5 py-3 text-xs font-semibold text-zinc-600 uppercase tracking-wider whitespace-nowrap">Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -238,6 +239,7 @@ export default function SecurityPage() {
                 ))}
               </tbody>
             </table>
+            </div>
           </div>
         </section>
       </div>

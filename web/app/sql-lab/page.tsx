@@ -196,7 +196,7 @@ export default function SqlLabPage() {
     <div className="min-h-screen">
       {/* Header */}
       <div className="border-b border-white/[0.06] bg-zinc-900/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+        <div className="page-container py-6">
           <div className="flex items-center gap-3 mb-2">
             <span className="badge badge-blue">INTERACTIVE</span>
             <span className="badge badge-green">
@@ -211,7 +211,7 @@ export default function SqlLabPage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+      <div className="page-container py-6">
         <div className="grid grid-cols-1 xl:grid-cols-[280px_1fr] gap-6">
 
           {/* ── Query Library sidebar ─────────────────────────────────────── */}

@@ -63,7 +63,7 @@ export default function DynamicSqlPage() {
     <div className="min-h-screen">
       {/* Header */}
       <div className="border-b border-white/[0.06] bg-zinc-900/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+        <div className="page-container py-8">
           <div className="flex items-center gap-3 mb-3">
             <span className="badge badge-blue">MODULE 2</span>
             <span className="badge badge-purple">DYNAMIC SQL</span>
@@ -85,7 +85,7 @@ export default function DynamicSqlPage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 space-y-12">
+      <div className="page-container py-10 space-y-12">
 
         {/* ── 1. Department Search ──────────────────────────────────────── */}
         <DemoSection

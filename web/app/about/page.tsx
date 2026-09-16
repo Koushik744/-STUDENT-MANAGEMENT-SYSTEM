@@ -61,7 +61,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen">
       <div className="border-b border-white/[0.06] bg-zinc-900/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+        <div className="page-container py-8">
           <span className="badge badge-blue mb-3">ABOUT</span>
           <h1 className="text-3xl sm:text-4xl font-bold text-zinc-100 mb-3">Project Overview</h1>
           <p className="text-zinc-400 max-w-2xl">
@@ -70,7 +70,7 @@ export default function AboutPage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 space-y-12">
+      <div className="page-container py-10 space-y-12">
 
         {/* ── Project origin ───────────────────────────────────────────── */}
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-8">

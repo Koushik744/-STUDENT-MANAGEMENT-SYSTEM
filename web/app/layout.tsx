@@ -17,9 +17,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="h-full">
-      <body className="min-h-full flex flex-col antialiased">
+      {/*
+        overflow-x: clip on html+body prevents horizontal scroll without
+        creating a new BFC (which would break position:sticky on nav).
+        w-full + relative ensure the body is the containing block for
+        fixed children and doesn't shrink-wrap content.
+      */}
+      <body className="min-h-full w-full flex flex-col antialiased relative">
         <Navigation />
-        <main className="flex-1 pt-[60px]">{children}</main>
+        <main className="flex-1 pt-[60px] w-full min-w-0">{children}</main>
         <Footer />
       </body>
     </html>

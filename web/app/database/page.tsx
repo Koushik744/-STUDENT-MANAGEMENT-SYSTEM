@@ -82,7 +82,7 @@ export default function DatabasePage() {
   return (
     <div className="min-h-screen">
       <div className="border-b border-white/[0.06] bg-zinc-900/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+        <div className="page-container py-8">
           <span className="badge badge-blue mb-3">
             <Database size={10} />
             SCHEMA EXPLORER
@@ -94,7 +94,7 @@ export default function DatabasePage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 space-y-12">
+      <div className="page-container py-10 space-y-12">
         {tableNames.map(tname => {
           const tschema = schema[tname];
           const color = tableColor[tname];

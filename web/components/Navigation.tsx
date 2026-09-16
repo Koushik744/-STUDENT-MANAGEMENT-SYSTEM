@@ -36,7 +36,7 @@ export default function Navigation() {
       }`}
       style={{ height: '60px' }}
     >
-      <nav className="max-w-7xl mx-auto h-full flex items-center justify-between px-4 sm:px-6">
+      <nav className="max-w-6xl mx-auto h-full flex items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
           <div className="w-7 h-7 rounded-md bg-blue-500/20 border border-blue-500/30 flex items-center justify-center
@@ -100,7 +100,7 @@ export default function Navigation() {
       {/* Mobile menu */}
       {open && (
         <div className="lg:hidden glass border-t border-white/[0.06] animate-slide-down">
-          <ul className="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-1">
+          <ul className="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-1">
             {navLinks.map(({ href, label }) => {
               const active = pathname === href;
               return (

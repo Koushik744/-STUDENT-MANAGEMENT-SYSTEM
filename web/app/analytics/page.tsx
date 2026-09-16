@@ -41,7 +41,7 @@ export default function AnalyticsPage() {
   return (
     <div className="min-h-screen">
       <div className="border-b border-white/[0.06] bg-zinc-900/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+        <div className="page-container py-8">
           <span className="badge badge-blue mb-3">ANALYTICS</span>
           <h1 className="text-3xl sm:text-4xl font-bold text-zinc-100 mb-3">Dataset Analytics</h1>
           <p className="text-zinc-400 max-w-2xl">
@@ -51,7 +51,7 @@ export default function AnalyticsPage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 space-y-10">
+      <div className="page-container py-10 space-y-10">
 
         {/* ── Stats row ────────────────────────────────────────────────── */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">

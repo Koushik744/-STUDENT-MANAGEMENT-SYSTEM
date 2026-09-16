@@ -60,14 +60,23 @@
 /* ─── Base ──────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; overflow-x: hidden; }
+/*
+  overflow-x: clip — unlike hidden it does NOT create a new scroll container
+  (which can silently break position:sticky) while still clipping overflow.
+*/
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
 
 body {
   background: #09090b;
   color: #fafafa;
   font-family: 'Fira Sans', system-ui, sans-serif;
-  overflow-x: hidden;
+  overflow-x: clip;
+  width: 100%;
   min-height: 100vh;
+  position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -82,7 +91,32 @@ body {
 ::selection { background: rgba(59,130,246,0.3); color: #fafafa; }
 
 /* ─── Focus ─────────────────────────────────────────────── */
-:focus-visible { outline: 2px solid rgba(59,130,246,0.6); outline-offset: 2px; border-radius: 4px; }
+:focus-visible {
+  outline: 2px solid rgba(59,130,246,0.7);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ─── Page container ─────────────────────────────────────── */
+/*
+  Consistent section container: max-w-6xl (72rem=1152px) keeps meaningful
+  side-margin at 1215px CSS viewport (125% DPI Windows) where max-w-7xl
+  (1280px) would fill the viewport entirely.
+*/
+.page-container {
+  width: 100%;
+  max-width: 72rem; /* 1152px */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+@media (min-width: 640px) {
+  .page-container { padding-left: 1.5rem; padding-right: 1.5rem; }
+}
+@media (min-width: 1024px) {
+  .page-container { padding-left: 2rem; padding-right: 2rem; }
+}
 
 /* ─── Glass ─────────────────────────────────────────────── */
 .glass {
@@ -92,7 +126,7 @@ body {
   border: 1px solid rgba(255,255,255,0.07);
 }
 .glass-raised {
-  background: rgba(31,31,35,0.75);
+  background: rgba(31,31,35,0.8);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255,255,255,0.09);
@@ -115,10 +149,14 @@ body {
   background: #0d1117;
   border: 1px solid rgba(255,255,255,0.06);
   border-radius: 10px;
-  overflow-x: auto;
+  overflow: hidden;
   font-family: 'Fira Code', monospace;
   font-size: 13.5px;
   line-height: 1.65;
+}
+.sql-block .sql-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 /* ─── Grid bg ───────────────────────────────────────────── */
@@ -129,7 +167,7 @@ body {
   background-size: 40px 40px;
 }
 .dot-grid {
-  background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
@@ -148,19 +186,50 @@ body {
 }
 
 /* ─── Result table ──────────────────────────────────────── */
-.result-table { width: 100%; border-collapse: collapse; font-family: 'Fira Code', monospace; font-size: 12.5px; }
-.result-table th { padding: 9px 14px; text-align: left; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #71717a; border-bottom: 1px solid rgba(255,255,255,0.06); white-space: nowrap; }
-.result-table td { padding: 8px 14px; color: #d4d4d8; border-bottom: 1px solid rgba(255,255,255,0.04); white-space: nowrap; }
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Fira Code', monospace;
+  font-size: 12.5px;
+}
+.result-table th {
+  padding: 9px 14px;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #71717a;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  white-space: nowrap;
+}
+.result-table td {
+  padding: 8px 14px;
+  color: #d4d4d8;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  white-space: nowrap;
+}
 .result-table tr:hover td { background: rgba(255,255,255,0.025); }
 .result-table tr:last-child td { border-bottom: none; }
 
 /* ─── Badge ─────────────────────────────────────────────── */
-.badge { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; font-family: 'Fira Code', monospace; }
-.badge-blue   { background: rgba(59,130,246,0.12); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
-.badge-green  { background: rgba(34,197,94,0.1); color: #86efac; border: 1px solid rgba(34,197,94,0.2); }
-.badge-red    { background: rgba(239,68,68,0.1); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
-.badge-amber  { background: rgba(245,158,11,0.1); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
-.badge-purple { background: rgba(167,139,250,0.1); color: #c4b5fd; border: 1px solid rgba(167,139,250,0.2); }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  font-family: 'Fira Code', monospace;
+  white-space: nowrap;
+}
+.badge-blue   { background: rgba(59,130,246,0.12);  color: #93c5fd; border: 1px solid rgba(59,130,246,0.22); }
+.badge-green  { background: rgba(34,197,94,0.1);    color: #86efac; border: 1px solid rgba(34,197,94,0.22); }
+.badge-red    { background: rgba(239,68,68,0.1);    color: #fca5a5; border: 1px solid rgba(239,68,68,0.22); }
+.badge-amber  { background: rgba(245,158,11,0.1);   color: #fcd34d; border: 1px solid rgba(245,158,11,0.22); }
+.badge-purple { background: rgba(167,139,250,0.1);  color: #c4b5fd; border: 1px solid rgba(167,139,250,0.22); }
 
 /* ─── Reduce motion ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
