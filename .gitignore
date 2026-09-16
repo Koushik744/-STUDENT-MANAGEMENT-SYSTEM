@@ -13,3 +13,14 @@ ENV/
 # IDE files
 .vscode/
 .idea/
+
+# Node.js / Next.js
+web/node_modules/
+web/.next/
+web/out/
+web/.env.local
+web/.env.*.local
+
+# Misc
+.DS_Store
+*.log

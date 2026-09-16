@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-brand-blue: #3b82f6;
+  --color-brand-blue-dim: rgba(59,130,246,0.15);
+  --color-brand-green: #22c55e;
+  --color-brand-green-dim: rgba(34,197,94,0.12);
+  --color-brand-red: #ef4444;
+  --color-brand-red-dim: rgba(239,68,68,0.12);
+  --color-brand-amber: #f59e0b;
+  --color-surface: #18181b;
+  --color-surface-raised: #1f1f23;
+  --color-surface-overlay: #27272a;
+  --color-sql-bg: #0d1117;
+  --color-sql-keyword: #ff7b72;
+  --color-sql-function: #d2a8ff;
+  --color-sql-string: #a5d6ff;
+  --color-sql-number: #79c0ff;
+  --color-sql-comment: #8b949e;
+  --color-sql-table: #ffa657;
+  --color-sql-column: #e6edf3;
+  --color-sql-placeholder: #f0883e;
+
+  /* Fonts */
+  --font-sans: 'Fira Sans', system-ui, sans-serif;
+  --font-mono: 'Fira Code', 'JetBrains Mono', monospace;
+
+  /* Animations */
+  --animate-fade-in: fadeIn 0.5s ease-out;
+  --animate-fade-up: fadeUp 0.5s ease-out;
+  --animate-glow: glow 2s ease-in-out infinite;
+  --animate-flow: flow 3s ease-in-out infinite;
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(59,130,246,0.2); }
+    50% { box-shadow: 0 0 40px rgba(59,130,246,0.4); }
+  }
+  @keyframes flow {
+    0%, 100% { opacity: 0.4; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-4px); }
+  }
+  @keyframes shimmer {
+    from { background-position: -200% 0; }
+    to { background-position: 200% 0; }
+  }
+}
+
+/* ─── Base ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; overflow-x: hidden; }
+
+body {
+  background: #09090b;
+  color: #fafafa;
+  font-family: 'Fira Sans', system-ui, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #52525b; }
+
+/* ─── Selection ─────────────────────────────────────────── */
+::selection { background: rgba(59,130,246,0.3); color: #fafafa; }
+
+/* ─── Focus ─────────────────────────────────────────────── */
+:focus-visible { outline: 2px solid rgba(59,130,246,0.6); outline-offset: 2px; border-radius: 4px; }
+
+/* ─── Glass ─────────────────────────────────────────────── */
+.glass {
+  background: rgba(24,24,27,0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.07);
+}
+.glass-raised {
+  background: rgba(31,31,35,0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.09);
+}
+
+/* ─── SQL Syntax ────────────────────────────────────────── */
+.sql-keyword   { color: #ff7b72; font-weight: 600; }
+.sql-function  { color: #d2a8ff; }
+.sql-string    { color: #a5d6ff; }
+.sql-number    { color: #79c0ff; }
+.sql-comment   { color: #6e7681; font-style: italic; }
+.sql-table     { color: #ffa657; }
+.sql-column    { color: #e6edf3; }
+.sql-operator  { color: #ff7b72; }
+.sql-placeholder { color: #f0883e; font-weight: 600; }
+.sql-punct     { color: #8b949e; }
+
+/* ─── SQL block ─────────────────────────────────────────── */
+.sql-block {
+  background: #0d1117;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  overflow-x: auto;
+  font-family: 'Fira Code', monospace;
+  font-size: 13.5px;
+  line-height: 1.65;
+}
+
+/* ─── Grid bg ───────────────────────────────────────────── */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.dot-grid {
+  background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ─── Gradient text ─────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #e2e8f0 0%, #94a3b8 50%, #e2e8f0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-blue {
+  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 60%, #34d399 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Result table ──────────────────────────────────────── */
+.result-table { width: 100%; border-collapse: collapse; font-family: 'Fira Code', monospace; font-size: 12.5px; }
+.result-table th { padding: 9px 14px; text-align: left; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #71717a; border-bottom: 1px solid rgba(255,255,255,0.06); white-space: nowrap; }
+.result-table td { padding: 8px 14px; color: #d4d4d8; border-bottom: 1px solid rgba(255,255,255,0.04); white-space: nowrap; }
+.result-table tr:hover td { background: rgba(255,255,255,0.025); }
+.result-table tr:last-child td { border-bottom: none; }
+
+/* ─── Badge ─────────────────────────────────────────────── */
+.badge { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; font-family: 'Fira Code', monospace; }
+.badge-blue   { background: rgba(59,130,246,0.12); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+.badge-green  { background: rgba(34,197,94,0.1); color: #86efac; border: 1px solid rgba(34,197,94,0.2); }
+.badge-red    { background: rgba(239,68,68,0.1); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+.badge-amber  { background: rgba(245,158,11,0.1); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+.badge-purple { background: rgba(167,139,250,0.1); color: #c4b5fd; border: 1px solid rgba(167,139,250,0.2); }
+
+/* ─── Reduce motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
